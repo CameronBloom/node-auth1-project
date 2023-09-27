@@ -20,12 +20,13 @@ const authRouter = require('./auth/auth-router')
 const session = require('express-session')
 const Store = require('connect-session-knex')(session)
 const knex = require('../data/db-config')
+
 const server = express();
 
 // config object
 server.use(session({
-  name: "chocolatechip",
-  secret: "put-this-somewhere-else",
+  name: 'chocolatechip',
+  secret: 'put',
   saveUninitialized: false,
   resave: false,
   store: new Store({
@@ -44,7 +45,6 @@ server.use(session({
 server.use(helmet());
 server.use(express.json());
 server.use(cors());
-
 
 server.use('/api/users', usersRouter)
 server.use('/api/auth', authRouter)
